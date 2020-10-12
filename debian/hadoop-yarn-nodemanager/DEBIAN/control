@@ -1,0 +1,17 @@
+Package: hadoop-yarn-nodemanager
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 22
+Depends: hadoop-yarn (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Node manager for Hadoop
+ The NodeManager is the per-machine framework agent who is responsible for
+ containers, monitoring their resource usage (cpu, memory, disk, network) and
+ reporting the same to the ResourceManager/Scheduler.
+ .
+ .
+ Built by vRNI, VMware, Inc.

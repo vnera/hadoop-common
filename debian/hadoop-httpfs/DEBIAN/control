@@ -1,0 +1,16 @@
+Package: hadoop-httpfs
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 50
+Depends: hadoop (= 3.0.0+cdh6.3.2-1605554), hadoop-client (= 3.0.0+cdh6.3.2-1605554), hadoop-hdfs (= 3.0.0+cdh6.3.2-1605554), avro-libs, zookeeper
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: HTTPFS for Hadoop
+  The server providing HTTP REST API support for the complete FileSystem/FileContext
+  interface in HDFS.
+ .
+ .
+ Built by vRNI, VMware, Inc.

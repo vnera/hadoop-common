@@ -1,0 +1,14 @@
+Package: hadoop-hdfs-nfs3
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 23
+Depends: hadoop-hdfs (= 3.0.0+cdh6.3.2-1605554), rpcbind
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Hadoop HDFS NFS v3 gateway service
+ .
+ .
+ Built by vRNI, VMware, Inc.

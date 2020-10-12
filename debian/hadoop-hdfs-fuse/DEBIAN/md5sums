@@ -1,0 +1,6 @@
+25af405d54cd5205a03daf2c965096eb  usr/bin/hadoop-fuse-dfs
+523a6419299749977a778b4f7f4a165b  usr/lib/hadoop/bin/fuse_dfs
+63576770349c028506adbebea93e7e2a  usr/share/doc/hadoop-hdfs-fuse/changelog.Debian.gz
+9ce30856e5e7f77ba716c8c78cdf6d74  usr/share/doc/hadoop-hdfs-fuse/copyright
+da21e335d86a97fb2a67782bc6d14107  usr/share/lintian/overrides/hadoop-hdfs-fuse
+fc924c14dfecf59c082552acc81d7369  usr/share/man/man1/hadoop-fuse-dfs.1.gz

@@ -1,0 +1,4 @@
+24b79b0a9d753db553baae49250a81b2  usr/lib/hadoop-httpfs/cloudera/cdh_version.properties
+78d5440816fa3eae5f5facdaa6a3e3de  usr/lib/hadoop-httpfs/sbin/httpfs.sh
+63576770349c028506adbebea93e7e2a  usr/share/doc/hadoop-httpfs/changelog.Debian.gz
+9ce30856e5e7f77ba716c8c78cdf6d74  usr/share/doc/hadoop-httpfs/copyright

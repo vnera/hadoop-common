@@ -1,0 +1,32 @@
+Package: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 124421
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4), adduser, bigtop-utils (>= 0.7), zookeeper (>= 3.4.0), psmisc, netcat-openbsd, avro-libs, parquet
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: A software platform for processing vast amounts of data
+ Hadoop is a software platform that lets one easily write and
+ run applications that process vast amounts of data.
+ .
+ Here's what makes Hadoop especially useful:
+  * Scalable: Hadoop can reliably store and process petabytes.
+  * Economical: It distributes the data and processing across clusters
+                of commonly available computers. These clusters can number
+                into the thousands of nodes.
+  * Efficient: By distributing the data, Hadoop can process it in parallel
+               on the nodes where the data is located. This makes it
+               extremely rapid.
+  * Reliable: Hadoop automatically maintains multiple copies of data and
+              automatically redeploys computing tasks based on failures.
+ .
+ Hadoop implements MapReduce, using the Hadoop Distributed File System (HDFS).
+ MapReduce divides applications into many small blocks of work. HDFS creates
+ multiple replicas of data blocks for reliability, placing them on compute
+ nodes around the cluster. MapReduce can then process the data where it is
+ located.
+ .
+ .
+ Built by vRNI, VMware, Inc.

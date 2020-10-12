@@ -1,0 +1,29 @@
+#!/bin/bash
+
+/sbin/modprobe fuse
+
+# Autodetect JAVA_HOME if not defined
+. /usr/lib/bigtop-utils/bigtop-detect-javahome
+
+export HADOOP_HOME=${HADOOP_HOME:-/usr/lib/hadoop}
+
+BIGTOP_DEFAULTS_DIR=${BIGTOP_DEFAULTS_DIR-/etc/default}
+[ -n "${BIGTOP_DEFAULTS_DIR}" -a -r ${BIGTOP_DEFAULTS_DIR}/hadoop-fuse ] && . ${BIGTOP_DEFAULTS_DIR}/hadoop-fuse
+
+export HADOOP_LIBEXEC_DIR=usr/lib/hadoop/libexec/
+
+if [ "${LD_LIBRARY_PATH}" = "" ]; then
+  export LD_LIBRARY_PATH=/usr/lib
+  for f in `find ${JAVA_HOME}/ -name client -prune -o -name libjvm.so -exec dirname {} \;`; do
+    export LD_LIBRARY_PATH=$f:${LD_LIBRARY_PATH}
+  done
+fi
+
+# Pulls all jars from hadoop client package and conf files from HADOOP_CONF_DIR
+for jar in ${HADOOP_HOME}/client/*.jar; do
+  CLASSPATH+="$jar:"
+done
+CLASSPATH+="${HADOOP_CONF_DIR:-${HADOOP_HOME}/etc/hadoop}"
+
+
+env CLASSPATH="${CLASSPATH}" ${HADOOP_HOME}/bin/fuse_dfs $@

@@ -1,0 +1,6 @@
+/etc/default/hadoop-kms
+/etc/hadoop-kms/conf.dist/core-site.xml
+/etc/hadoop-kms/conf.dist/kms-acls.xml
+/etc/hadoop-kms/conf.dist/kms-env.sh
+/etc/hadoop-kms/conf.dist/kms-log4j.properties
+/etc/hadoop-kms/conf.dist/kms-site.xml

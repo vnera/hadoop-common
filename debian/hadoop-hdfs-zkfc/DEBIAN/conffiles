@@ -1,0 +1,2 @@
+/etc/default/hadoop-hdfs-zkfc
+/etc/init.d/hadoop-hdfs-zkfc

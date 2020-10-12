@@ -1,0 +1,2 @@
+/etc/default/hadoop-yarn-nodemanager
+/etc/init.d/hadoop-yarn-nodemanager

@@ -1,0 +1,2 @@
+/etc/default/hadoop-mapreduce-historyserver
+/etc/init.d/hadoop-mapreduce-historyserver

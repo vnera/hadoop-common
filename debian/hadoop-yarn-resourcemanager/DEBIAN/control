@@ -1,0 +1,15 @@
+Package: hadoop-yarn-resourcemanager
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 22
+Depends: hadoop-yarn (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Resource manager for Hadoop
+ The resource manager manages the global assignment of compute resources to applications.
+ .
+ .
+ Built by vRNI, VMware, Inc.

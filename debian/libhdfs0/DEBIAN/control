@@ -1,0 +1,15 @@
+Package: libhdfs0
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: amd64
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 83
+Depends: hadoop (= 3.0.0+cdh6.3.2-1605554), libc6 (>= 2.14)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: JNI Bindings to access Hadoop HDFS from C
+ See http://wiki.apache.org/hadoop/LibHDFS
+ .
+ .
+ Built by vRNI, VMware, Inc.

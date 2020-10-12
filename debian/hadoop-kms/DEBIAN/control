@@ -1,0 +1,15 @@
+Package: hadoop-kms
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 45
+Depends: hadoop-client (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: KMS for Hadoop
+   Hadoop KMS is a cryptographic Key Management Server based on Hadoop's KeyProvider API.
+ .
+ .
+ Built by vRNI, VMware, Inc.

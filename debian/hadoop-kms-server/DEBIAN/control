@@ -1,0 +1,15 @@
+Package: hadoop-kms-server
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 23
+Depends: hadoop-kms (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: KMS for Hadoop
+ Bundles init scripts for KMS.
+ .
+ .
+ Built by vRNI, VMware, Inc.

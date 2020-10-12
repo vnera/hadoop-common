@@ -1,0 +1,11 @@
+debian/tmp/etc/security/limits.d/yarn.conf
+debian/tmp/etc/hadoop/conf.empty/yarn-env.sh
+debian/tmp/etc/hadoop/conf.empty/yarn-site.xml
+debian/tmp/etc/hadoop/conf.empty/capacity-scheduler.xml
+debian/tmp/etc/hadoop/conf.empty/container-executor.cfg
+debian/tmp/usr/lib/hadoop-yarn
+debian/tmp/usr/lib/hadoop/libexec/yarn-config.sh
+debian/tmp/usr/bin/yarn
+debian/tmp/var/lib/hadoop-yarn
+debian/tmp/var/log/hadoop-yarn
+debian/tmp/var/run/hadoop-yarn

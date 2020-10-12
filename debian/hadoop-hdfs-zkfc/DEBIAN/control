@@ -1,0 +1,19 @@
+Package: hadoop-hdfs-zkfc
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 23
+Depends: hadoop-hdfs (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Hadoop HDFS failover controller
+ The Hadoop HDFS failover controller is a ZooKeeper client which also
+ monitors and manages the state of the NameNode. Each of the machines
+ which runs a NameNode also runs a ZKFC, and that ZKFC is responsible
+ for: Health monitoring, ZooKeeper session management, ZooKeeper-based
+ election.
+ .
+ .
+ Built by vRNI, VMware, Inc.

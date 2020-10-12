@@ -1,0 +1,17 @@
+Package: hadoop-hdfs-datanode
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 23
+Depends: hadoop-hdfs (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Data Node for Hadoop
+ The Data Nodes in the Hadoop Cluster are responsible for serving up
+ blocks of data over the network to Hadoop Distributed Filesystem
+ (HDFS) clients.
+ .
+ .
+ Built by vRNI, VMware, Inc.

@@ -1,0 +1,15 @@
+Package: hadoop-yarn-timelinereader
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 8
+Depends: hadoop-yarn (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Timelinereader for Hadoop
+ The timelinereader that serves requests of metrics or events of hadoop application.
+ .
+ .
+ Built by vRNI, VMware, Inc.

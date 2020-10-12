@@ -1,0 +1,5 @@
+/etc/hadoop/conf.empty/capacity-scheduler.xml
+/etc/hadoop/conf.empty/container-executor.cfg
+/etc/hadoop/conf.empty/yarn-env.sh
+/etc/hadoop/conf.empty/yarn-site.xml
+/etc/security/limits.d/yarn.conf

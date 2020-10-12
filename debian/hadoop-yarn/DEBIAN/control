@@ -1,0 +1,27 @@
+Package: hadoop-yarn
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 20557
+Depends: libc6 (>= 2.14), adduser, bigtop-utils (>= 0.7), hadoop (= 3.0.0+cdh6.3.2-1605554), avro-libs, zookeeper
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: The Hadoop NextGen MapReduce (YARN)
+ YARN (Hadoop NextGen MapReduce) is a general purpose data-computation framework.
+ YARN splits up the functionalities of JobTracker, resource management,
+ job scheduling, and job monitoring into separate daemons called
+ ResourceManager and NodeManager.
+ .
+ ResourceManager is the ultimate authority that arbitrates resources
+ among all applications in the system. NodeManager is a per-host worker
+ that manages allocation of computational resources on a single host.
+ Both daemons work in support of ApplicationMaster (AM).
+ .
+ ApplicationMaster is a framework-specific library that negotiates resources
+ from ResourceManager and works with NodeManager(s) to execute and monitor
+ the tasks.
+ .
+ .
+ Built by vRNI, VMware, Inc.

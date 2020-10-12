@@ -1,0 +1,3 @@
+/etc/hadoop/conf.empty/mapred-queues.xml.template
+/etc/hadoop/conf.empty/mapred-site.xml
+/etc/security/limits.d/mapreduce.conf

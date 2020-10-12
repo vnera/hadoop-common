@@ -1,0 +1,9 @@
+/etc/default/hadoop
+/etc/hadoop/conf.empty/configuration.xsl
+/etc/hadoop/conf.empty/core-site.xml
+/etc/hadoop/conf.empty/hadoop-metrics2.properties
+/etc/hadoop/conf.empty/hadoop-policy.xml
+/etc/hadoop/conf.empty/log4j.properties
+/etc/hadoop/conf.empty/ssl-client.xml.example
+/etc/hadoop/conf.empty/ssl-server.xml.example
+/etc/hadoop/conf.empty/workers

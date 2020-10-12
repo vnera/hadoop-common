@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Autodetect JAVA_HOME if not defined
+. /usr/lib/bigtop-utils/bigtop-detect-javahome
+
+export HADOOP_LIBEXEC_DIR=/usr/lib/hadoop/libexec/
+export HADOOP_LOG_DIR=${HADOOP_LOG_DIR:-/var/log/hadoop-mapreduce}
+
+exec /usr/lib/hadoop-mapreduce/bin/mapred "$@"

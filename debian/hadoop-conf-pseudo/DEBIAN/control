@@ -1,0 +1,17 @@
+Package: hadoop-conf-pseudo
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 49
+Depends: hadoop (= 3.0.0+cdh6.3.2-1605554), hadoop-hdfs-namenode (= 3.0.0+cdh6.3.2-1605554), hadoop-hdfs-datanode (= 3.0.0+cdh6.3.2-1605554), hadoop-hdfs-secondarynamenode (= 3.0.0+cdh6.3.2-1605554), hadoop-yarn-resourcemanager (= 3.0.0+cdh6.3.2-1605554), hadoop-yarn-nodemanager (= 3.0.0+cdh6.3.2-1605554), hadoop-mapreduce-historyserver (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Pseudo-distributed Hadoop configuration
+ Contains configuration files for a "pseudo-distributed" Hadoop deployment.
+ In this mode, each of the hadoop components runs as a separate Java process,
+ but all on the same machine.
+ .
+ .
+ Built by vRNI, VMware, Inc.

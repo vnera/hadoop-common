@@ -1,0 +1,17 @@
+Package: hadoop-mapreduce
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 23632
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libssl1.0.0 (>= 1.0.0), libstdc++6 (>= 5.2), adduser, bigtop-utils (>= 0.7), hadoop-yarn (= 3.0.0+cdh6.3.2-1605554), avro-libs, zookeeper, hadoop (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: The Hadoop MapReduce (MRv2)
+ Hadoop MapReduce is a programming model and software framework for
+ writing applications that rapidly process vast amounts of data
+ in parallel on large clusters of hosts.
+ .
+ .
+ Built by vRNI, VMware, Inc.

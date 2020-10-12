@@ -1,0 +1,4 @@
+dafc43d7bf1ebd43a2f8410efc6d5f2e  usr/lib/hadoop-kms/cloudera/cdh_version.properties
+2126213e4c1d69462da8be09f81e7d99  usr/lib/hadoop-kms/sbin/kms.sh
+63576770349c028506adbebea93e7e2a  usr/share/doc/hadoop-kms/changelog.Debian.gz
+9ce30856e5e7f77ba716c8c78cdf6d74  usr/share/doc/hadoop-kms/copyright

@@ -1,0 +1,20 @@
+Package: hadoop-hdfs-fuse
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: amd64
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 75
+Depends: libc6 (>= 2.14), libfuse2 (>= 2.8), libhdfs0, hadoop-hdfs (= 3.0.0+cdh6.3.2-1605554), hadoop-client (= 3.0.0+cdh6.3.2-1605554), fuse-utils | fuse, bigtop-utils (>= 0.7)
+Enhances: hadoop
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: HDFS exposed over a Filesystem in Userspace
+ These projects (enumerated below) allow HDFS to be mounted (on most flavors
+ of Unix) as a standard file system using the mount command. Once mounted, the
+  user can operate on an instance of hdfs using standard Unix utilities such
+ as 'ls', 'cd', 'cp', 'mkdir', 'find', 'grep', or use standard Posix libraries
+ like open, write, read, close from C, C++, Python, Ruby, Perl, Java, bash, etc.
+ .
+ .
+ Built by vRNI, VMware, Inc.

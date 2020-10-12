@@ -1,0 +1,15 @@
+Package: hadoop-doc
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 98006
+Section: doc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Documentation for Hadoop
+ This package contains the Java Documentation for Hadoop and its relevant
+ APIs.
+ .
+ .
+ Built by vRNI, VMware, Inc.

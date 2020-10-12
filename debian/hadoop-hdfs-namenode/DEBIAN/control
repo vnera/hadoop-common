@@ -1,0 +1,16 @@
+Package: hadoop-hdfs-namenode
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 24
+Depends: hadoop-hdfs (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Name Node for Hadoop
+ The Hadoop Distributed Filesystem (HDFS) requires one unique server, the
+ namenode, which manages the block locations of files on the filesystem.
+ .
+ .
+ Built by vRNI, VMware, Inc.

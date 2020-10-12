@@ -1,0 +1,18 @@
+Package: hadoop-hdfs
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 51910
+Depends: adduser, bigtop-utils (>= 0.7), hadoop (= 3.0.0+cdh6.3.2-1605554), bigtop-jsvc
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: The Hadoop Distributed File System
+ Hadoop Distributed File System (HDFS) is the primary storage system used by
+ Hadoop applications. HDFS creates multiple replicas of data blocks and
+ distributes them on cluster hosts to enable reliable and extremely rapid
+ computations.
+ .
+ .
+ Built by vRNI, VMware, Inc.

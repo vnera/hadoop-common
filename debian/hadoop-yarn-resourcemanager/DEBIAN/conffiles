@@ -1,0 +1,2 @@
+/etc/default/hadoop-yarn-resourcemanager
+/etc/init.d/hadoop-yarn-resourcemanager

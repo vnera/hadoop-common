@@ -1,0 +1,5 @@
+libhadoop 1.0.0 hadoop
+libisal 2 hadoop
+libnativetask 1.0.0 hadoop
+libsnappy 1 hadoop
+libzstd 1 hadoop

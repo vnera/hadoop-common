@@ -1,0 +1,8 @@
+/etc/hadoop/conf.pseudo/README
+/etc/hadoop/conf.pseudo/core-site.xml
+/etc/hadoop/conf.pseudo/hadoop-env.sh
+/etc/hadoop/conf.pseudo/hadoop-metrics.properties
+/etc/hadoop/conf.pseudo/hdfs-site.xml
+/etc/hadoop/conf.pseudo/log4j.properties
+/etc/hadoop/conf.pseudo/mapred-site.xml
+/etc/hadoop/conf.pseudo/yarn-site.xml

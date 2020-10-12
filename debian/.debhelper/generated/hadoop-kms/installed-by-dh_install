@@ -1,0 +1,3 @@
+debian/tmp/etc/default/hadoop-kms
+debian/tmp/etc/hadoop-kms
+debian/tmp/usr/lib/hadoop-kms

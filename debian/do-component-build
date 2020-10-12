@@ -1,0 +1,207 @@
+#!/bin/bash
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+set -ex
+CWD="$(dirname "$0")"
+
+# Building only libhdfs, so we are not in packaging
+# so here we copy the repo to the working directory
+if [ -n "$CAULDRON_HADOOP_NATIVE" ]; then
+  pushd .
+  cd build
+  cp -r ${CAULDRON_ROOT_DIR}/repos/cdh/hadoop .
+  cd hadoop
+fi
+
+# This file can be called in two ways. In the normal path, it is
+# invoked here as-is, and the build functions are over in the
+# templates directory.  As part of packaging, it is copied into a
+# package-specific directory along with the contents of the templates
+# directory, and so the build functions are in the current working
+# directory.
+FUNCTIONS1="${CWD}/../../templates/buildfuncs"
+FUNCTIONS2="${CWD}/buildfuncs"
+if [ -f "${FUNCTIONS1}" ]; then
+    . "${FUNCTIONS1}"
+elif [ -f "${FUNCTIONS2}" ]; then
+    . "${FUNCTIONS2}"
+else
+    echo "Unable to source ${FUNCTIONS1} or ${FUNCTIONS2}"
+    exit 1
+fi
+
+# Needs documentation for various input env vars:
+# * DO_MAVEN_DEPLOY
+# * Various skip methods
+#
+# When it is called, and what the intent is
+#
+# 1. Build JARs
+# 2. Build the site
+# 3. RPM build then builds everything again, with native artifacts
+
+export HADOOP_PROTOC_PATH=/usr/local/bin/protoc
+#export HADOOP_OPENSSL_101J_PATH=/opt/toolchain/openssl-1.0.1j
+
+MAVEN_INST_DEPLOY=install
+if [ -n "${DO_MAVEN_DEPLOY}" ]; then
+    MAVEN_INST_DEPLOY=$DO_MAVEN_DEPLOY
+fi
+
+if [ ! -d build/hadoop-${FULL_VERSION}/src ]; then
+    mkdir -p build/hadoop-${FULL_VERSION}/src
+    tar --exclude='./build/*' -cf - . | (cd build/hadoop-${FULL_VERSION}/src ; tar -xf -)
+    rm -rf build/hadoop-${FULL_VERSION}/src/cloudera build/hadoop-${FULL_VERSION}/src/.git
+fi
+
+if [ -z "$BUNDLE_SNAPPY" ] ; then
+    BUNDLE_SNAPPY="-Dbundle.snappy=true -Drequire.snappy=true"
+    for f in /usr/lib/x86_64-linux-gnu /usr/lib64 /usr/lib; do
+        if [ -f $f/libsnappy.so ]; then
+            BUNDLE_SNAPPY="${BUNDLE_SNAPPY} -Dsnappy.lib=$f"
+            break
+        fi
+    done
+fi
+
+# We don't support ZStandard on Debian8
+if [ -z "$BUNDLE_ZSTD" ] && [ "$CAULDRON_DOCKER_PLATFORM" != "debian8" ]; then
+    BUNDLE_ZSTD="-Dbundle.zstd=true -Drequire.zstd=true"
+
+   for f in /usr/lib /usr/lib64 /usr/lib/x86_64-linux-gnu; do
+       if [ -f $f/libzstd.so.1 ]; then
+            BUNDLE_ZSTD="${BUNDLE_ZSTD} -Dzstd.lib=$f"
+            break
+        fi
+   done
+
+   if [[ "$CAULDRON_DOCKER_PLATFORM" == "sles12" ]]; then
+       #  Check ZSTD version
+       LIBFILECOUNT=`ls -lL "/usr/lib" | grep "libzstd.so.1.3.5" | wc -l`
+       if [[ $LIBFILECOUNT -ne 1 ]]; then
+         echo "ZStandard version 1.3.5 not found under /usr/lib. This version is required for SLES12"
+         exit 1
+      fi
+   fi
+fi
+
+if [ -z "$BUNDLE_ISAL" ] ; then
+    BUNDLE_ISAL=" -Dbundle.isal=true -Drequire.isal=true"
+    for f in /usr/lib /usr/lib64 /usr/lib/x86_64-linux-gnu; do
+        if [ -f $f/libisal.so ]; then
+            BUNDLE_ISAL="${BUNDLE_ISAL} -Disal.lib=$f"
+            break
+        fi
+    done
+fi
+
+if [ -z "$BUNDLE_BZIP2" ] ; then
+    BUNDLE_BZIP2="-Drequire.bzip2=true"
+fi
+
+MAVEN_SSL_FLAGS="-Drequire.openssl -Dopenssl.prefix=$HADOOP_OPENSSL_101J_PATH -Dextra.libhadoop.rpath=/var/lib/hadoop/extra/native"
+if [ -n "${DO_MAVEN_DEPLOY}" ]; then
+    MAVEN_SSL_FLAGS=""
+fi
+
+P_NATIVE="-Pnative -Pfuse -Drequire.fuse=true"
+if [ -n "${CAULDRON_NO_NATIVE_BUILD}" ]; then
+    P_NATIVE=""
+fi
+
+MAVEN_SKIP_TESTS="-DskipTests"
+MAVEN_SKIP_ANALYZE="-Dmdep.analyze.skip=true"
+
+# Here we define a special target to only build libhdfs and we will bail
+# after copying the needed files to the output
+if [ -n "$CAULDRON_HADOOP_NATIVE" ]; then
+  mvn -B $BUNDLE_SNAPPY $BUNDLE_ISAL $BUNDLE_BZIP2 $BUNDLE_ZSTD $P_NATIVE \
+      -Pdist \
+      ${MAVEN_SSL_FLAGS} ${MAVEN_SKIP_TESTS} \
+      ${MAVEN_SKIP_ANALYZE} \
+      $MAVEN_INST_DEPLOY \
+      -Dmaven.javadoc.skip=true \
+      -pl hadoop-hdfs-project/hadoop-hdfs-native-client \
+      install
+
+  # Copy the libs to the output directory
+  popd
+  mkdir -p output/hadoop/lib
+  mkdir -p output/hadoop/include
+  cp -r build/hadoop/hadoop-hdfs-project/hadoop-hdfs-native-client/target/hadoop-hdfs-native-client-*/lib/*  output/hadoop/lib
+  cp -r build/hadoop/hadoop-hdfs-project/hadoop-hdfs-native-client/target/hadoop-hdfs-native-client-*/include/*  output/hadoop/include
+  exit 0
+fi
+
+echo "Stage 0: building Hadoop maven artifacts"
+
+# Build artifacts
+#    -X -T 16 \
+#    -T 16 \
+mvn -B $BUNDLE_SNAPPY $BUNDLE_ISAL $BUNDLE_BZIP2 $BUNDLE_ZSTD $P_NATIVE \
+    -Pdist -Psrc -Dtar \
+    ${MAVEN_SSL_FLAGS} ${MAVEN_SKIP_TESTS} \
+    ${MAVEN_SKIP_ANALYZE} \
+    $MAVEN_INST_DEPLOY \
+    "$@"
+
+if [ -z "${MAVEN_DEPLOY_ONLY}" ]; then
+    echo "Stage 1: building Hadoop maven site"
+    #rvasanthakumari changing the yetus url
+    export YETUS_MIRROR="http://archive.apache.org/dist/yetus"
+    export YETUS_KEYS_MIRROR="http://archive.apache.org/dist/yetus"
+    #rvasanthakumari change ends
+
+    mvn -B $CAULDRON_MAVEN_EXTRA_ARGS site site:stage ${MAVEN_SKIP_TESTS} ${MAVEN_SKIP_ANALYZE} $@
+
+    # Copy generated docs
+    BLD_DOCS_DIR="build/hadoop-${FULL_VERSION}/share/doc/"
+    mkdir -p ${BLD_DOCS_DIR}
+    cp -r target/staging/hadoop-project/* ${BLD_DOCS_DIR}
+    if [ -n "$CAULDRON_FIRST_NATIVE_BUILD" ]; then
+        # We only need to copy docs once regardless of OS
+        PUB_DOCS_DIR="${CAULDRON_OUTPUT}/cdh6/${CDH_VERSION}/docs/hadoop-${FULL_VERSION}/"
+        mkdir -p ${PUB_DOCS_DIR}
+        cp -r target/staging/hadoop-project/* ${PUB_DOCS_DIR}
+    fi
+
+    # Rebuild and now mvn deploy the tarball - note the '-pl hadoop-dist' - if we chdir into hadoop-dist and build, it fails.
+
+    mvn -B $CAULDRON_MAVEN_EXTRA_ARGS -pl hadoop-dist -Pdist -Psrc -Dtar ${MAVEN_SKIP_TESTS} ${MAVEN_SKIP_ANALYZE} -Dmaven.javadoc.skip=true -Dmaven.deploy.skip=false $MAVEN_INST_DEPLOY "$@"
+
+    (cd build/hadoop-${FULL_VERSION} ; tar --use-compress-program pigz --strip-components=1 -xvf  ../../hadoop-dist/target/hadoop-${FULL_VERSION}.tar.gz)
+    # (cd build/hadoop-${FULL_VERSION}/src ; tar --strip-components=1 -xvf  ../../../hadoop-dist/target/hadoop-${FULL_VERSION}.tar.gz)
+    (cd build/hadoop-${FULL_VERSION} ; cp -r ../../cloudera .)
+
+    # Create an artificial C++ example dir
+    mkdir -p build/hadoop-${FULL_VERSION}/examples/{bin,lib} || :
+    cp hadoop-tools/hadoop-pipes/target/native/*.a build/hadoop-${FULL_VERSION}/examples/lib
+    cp hadoop-tools/hadoop-pipes/target/native/examples/* build/hadoop-${FULL_VERSION}/examples/bin
+    cp -r build/hadoop-${FULL_VERSION}/include build/hadoop-${FULL_VERSION}/examples
+
+    BIN_EXCLUDE="--exclude=*/lib/native/lib*        \
+         --exclude=*/examples*/bin/*            \
+         --exclude=*/examples*/lib/*            \
+         --exclude=*/bin/container-executor     \
+         --exclude=*/bin/test-container-executor"
+    (cd build && tar --use-compress-program pigz $BIN_EXCLUDE -cf hadoop-${FULL_VERSION}.tar.gz hadoop-${FULL_VERSION})
+
+    # Copy fuse output to the build directory
+    cp hadoop-hdfs-project/hadoop-hdfs-native-client/target/main/native/fuse-dfs/fuse_dfs build/hadoop-${FULL_VERSION}/bin/
+
+    # Create a manifest for hadoop client package
+    (cd hadoop-client-modules/hadoop-client/target/hadoop-client-*/share/hadoop/client/lib ; ls) > build/hadoop-${FULL_VERSION}/hadoop-client.list
+fi

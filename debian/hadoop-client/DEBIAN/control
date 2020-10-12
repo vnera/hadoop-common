@@ -1,0 +1,15 @@
+Package: hadoop-client
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 188
+Depends: hadoop (= 3.0.0+cdh6.3.2-1605554), hadoop-hdfs (= 3.0.0+cdh6.3.2-1605554), zookeeper, hadoop-yarn (= 3.0.0+cdh6.3.2-1605554), hadoop-mapreduce (= 3.0.0+cdh6.3.2-1605554), avro-libs
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Hadoop client side dependencies
+ Installation of this package will provide you with all the dependencies for Hadoop clients.
+ .
+ .
+ Built by vRNI, VMware, Inc.

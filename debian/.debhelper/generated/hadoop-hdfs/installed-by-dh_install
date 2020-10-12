@@ -1,0 +1,10 @@
+debian/tmp/etc/security/limits.d/hdfs.conf
+debian/tmp/etc/hadoop/conf.empty/hdfs-site.xml
+debian/tmp/etc/hadoop/conf.impala
+debian/tmp/usr/lib/hadoop-hdfs
+debian/tmp/usr/lib/hadoop/libexec/hdfs-config.sh
+debian/tmp/usr/lib/hadoop/libexec/init-hdfs.sh
+debian/tmp/usr/bin/hdfs
+debian/tmp/var/lib/hadoop-hdfs
+debian/tmp/var/log/hadoop-hdfs
+debian/tmp/var/run/hadoop-hdfs

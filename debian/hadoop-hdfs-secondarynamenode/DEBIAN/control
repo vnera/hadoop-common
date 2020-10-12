@@ -1,0 +1,17 @@
+Package: hadoop-hdfs-secondarynamenode
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 23
+Depends: hadoop-hdfs (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Secondary Name Node for Hadoop
+ The Secondary Name Node is responsible for checkpointing file system images.
+ It is _not_ a failover pair for the namenode, and may safely be run on the
+ same machine.
+ .
+ .
+ Built by vRNI, VMware, Inc.

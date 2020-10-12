@@ -1,0 +1,3 @@
+debian/tmp/etc/default/hadoop-fuse
+debian/tmp/usr/bin/hadoop-fuse-dfs
+debian/tmp/usr/lib/hadoop/bin/fuse_dfs

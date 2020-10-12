@@ -1,0 +1,79 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+HADOOP_NAME="nfs3"
+DAEMON="hadoop-hdfs-$HADOOP_NAME"
+DESC="Hadoop HDFS NFS v3 service"
+EXEC_PATH="/usr/bin/hdfs"
+SVC_USER="hdfs"
+WORKING_DIR="/var/lib/hadoop-hdfs"
+DAEMON_FLAGS="$HADOOP_NAME"
+CONF_DIR="/etc/hadoop/conf"
+# This is overridden below when the TARGET_USER is determined
+PIDFILE="/var/run/hadoop-hdfs/privileged-$SVC_USER-$HADOOP_NAME.pid"
+
+generate_start() {
+
+cat <<'__EOT__'
+start() {
+  [ -x $EXEC_PATH ] || exit $ERROR_PROGRAM_NOT_INSTALLED
+  [ -d $CONF_DIR ] || exit $ERROR_PROGRAM_NOT_CONFIGURED
+
+  if [ -n "$HADOOP_PRIVILEGED_NFS_USER" ]; then
+    TARGET_USER=root
+  else
+    TARGET_USER=$SVC_USER
+  fi
+
+  export PIDFILE="/var/run/hadoop-hdfs/privileged-$TARGET_USER-$HADOOP_NAME.pid"
+  export HADOOP_IDENT_STRING=$TARGET_USER
+  su -s /bin/bash $TARGET_USER -c "$EXEC_PATH --config '$CONF_DIR' --daemon start $DAEMON_FLAGS"
+
+  # Some processes are slow to start
+  sleep $SLEEP_TIME
+  checkstatusofproc
+  RETVAL=$?
+
+  if [ $RETVAL -eq $STATUS_RUNNING ]; then
+    touch $LOCKFILE
+    log_success_msg "Started ${DESC} (${DAEMON}): "
+  else
+    log_failure_msg "Failed to start ${DESC}. Return value: $RETVAL"
+  fi
+
+  return $RETVAL
+
+}
+__EOT__
+}
+
+generate_stop() {
+
+cat <<'__EOT__'
+
+stop() {
+  start_daemon $EXEC_PATH --config "$CONF_DIR" --daemon stop $DAEMON_FLAGS
+  RETVAL=$?
+
+  if [ $RETVAL -eq $RETVAL_SUCCESS ]; then
+    log_success_msg "Stopped ${DESC}: "
+    rm -f $LOCKFILE $PIDFILE
+  else
+    log_failure_msg "Failed to stop ${DESC}. Return value: $RETVAL."
+ fi
+}
+
+__EOT__
+
+}

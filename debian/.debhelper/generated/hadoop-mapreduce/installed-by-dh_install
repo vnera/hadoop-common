@@ -1,0 +1,9 @@
+debian/tmp/etc/security/limits.d/mapreduce.conf
+debian/tmp/etc/hadoop/conf.empty/mapred-site.xml
+debian/tmp/etc/hadoop/conf.empty/mapred-queues.xml.template
+debian/tmp/usr/lib/hadoop-mapreduce
+debian/tmp/usr/lib/hadoop/libexec/mapred-config.sh
+debian/tmp/usr/bin/mapred
+debian/tmp/var/lib/hadoop-mapreduce
+debian/tmp/var/log/hadoop-mapreduce
+debian/tmp/var/run/hadoop-mapreduce

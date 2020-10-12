@@ -1,0 +1,15 @@
+Package: libhdfs0-dev
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: amd64
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 48
+Depends: hadoop (= 3.0.0+cdh6.3.2-1605554), libhdfs0 (= 3.0.0+cdh6.3.2-1605554)
+Section: libdevel
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: Development support for libhdfs0
+ Includes examples and header files for accessing HDFS from C
+ .
+ .
+ Built by vRNI, VMware, Inc.

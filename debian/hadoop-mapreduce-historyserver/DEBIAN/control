@@ -1,0 +1,16 @@
+Package: hadoop-mapreduce-historyserver
+Source: hadoop
+Version: 3.0.0+cdh6.3.2-1605554
+Architecture: all
+Maintainer: vRNI, VMware, Inc. <https://www.vmware.com/support>
+Installed-Size: 22
+Depends: hadoop-mapreduce (= 3.0.0+cdh6.3.2-1605554), hadoop-hdfs (= 3.0.0+cdh6.3.2-1605554)
+Section: misc
+Priority: extra
+Homepage: http://hadoop.apache.org/core/
+Description: MapReduce History Server
+ The History server keeps records of the different activities being performed
+ on a Apache Hadoop cluster.
+ .
+ .
+ Built by vRNI, VMware, Inc.

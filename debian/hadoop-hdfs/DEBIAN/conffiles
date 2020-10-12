@@ -1,0 +1,4 @@
+/etc/hadoop/conf.empty/hdfs-site.xml
+/etc/hadoop/conf.impala/core-site.xml
+/etc/hadoop/conf.impala/hdfs-site.xml
+/etc/security/limits.d/hdfs.conf

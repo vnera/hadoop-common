@@ -1,0 +1,2 @@
+/etc/default/hadoop-hdfs-journalnode
+/etc/init.d/hadoop-hdfs-journalnode

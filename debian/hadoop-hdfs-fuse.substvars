@@ -1,0 +1,3 @@
+shlibs:Depends=libc6 (>= 2.14), libfuse2 (>= 2.8), libhdfs0
+misc:Depends=
+misc:Pre-Depends=

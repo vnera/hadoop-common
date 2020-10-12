@@ -1,0 +1,2 @@
+/etc/default/hadoop-hdfs-datanode
+/etc/init.d/hadoop-hdfs-datanode
